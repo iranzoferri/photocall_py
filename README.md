@@ -1,5 +1,6 @@
 # PROYECTO PHOTOCALL
 
+    WARNING: Some bugs are known, dont use in an productión environment, you will experience a data lose.
 
 ### Lista de acciones
 - ficheros
