@@ -12,28 +12,39 @@
                      PHOTOCALL_PY BY Jaime Iranzo Ferri
 """
 
+# Base system to render photo carousel
 import pygame
-pygame.init()
 
-# Para calcular milisegundos del sistema
+# For time calculations
 import time
+from datetime import datetime
 
-# Para el calculo de uso de memoria
+# For calculate memory consumption
 import sys
 
-from datetime import datetime
+# For manage DSLR cameras
 from sh import gphoto2 as gp
-import signal, os, subprocess
-#import os
-import os.path
-import random
 
-#Para multithread
+# TODO: _______
+import signal
+import subprocess
+# multithread
 import threading
 import queue
 
+# Import os to work with paths and files
+import os
+import os.path # <-- ???
 
-##Directorio de fotos
+# Random number generation
+import random
+
+
+# Initialize all imported pygame modules
+pygame.init()
+
+
+# Directory where the photos will be saved
 gallery_path = './gallery/'
 save_location = './gallery/'
 amount_photo_take_global = 0
@@ -46,7 +57,7 @@ max_photo_take = 3
 #Para leer el arduino button led
 import serial, time
 arduino = None
-if os.path.exists('/dev/ttyUSB0'):
+if os.path.exists('/dev/ttyUSB0'): # TODO <-- Trasladar a un fichero de configuración o una base de datos
   arduino = serial.Serial('/dev/ttyUSB0', 9600)
 
 rawString = None
@@ -86,8 +97,6 @@ port_controller.start()
 #from sh import gphoto2 as gp
 #import signal, os, subprocess
 #import os.path
-
-
 
 
 #Parametros que se le pasan a gphoto2:
