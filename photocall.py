@@ -223,7 +223,21 @@ takea_shot_queue = queue.Queue()
 array_filenames_queue = queue.Queue()
 ready_shot_queue.put(False)
 takea_shot_queue.put(False)
+
 def captureImages(ready_shot_queue, takea_shot_queue, array_filenames_queue, files_found, last_photo_load):
+
+  """ 
+  This function is an independent thread, used to control when a photo is taken.
+
+  - ready_shot_queue:  Is ready to take a photo? External controller says if it can done.
+  - takea_shot_queue:  Means that is the moment to take a photo.
+  - array_filenames_queue:  The location and name of the new file (save_location + shot_date + ".JPG").
+  - files_found:  Number of files found on the gallery
+  - last_photo_load:  Last photo loaded in the carousel
+
+  Note: ready_shot_queue and takea_shot_queue is to prevent a race condition.
+  """
+
   while True:
     try:
       ready_shot = ready_shot_queue.get(timeout=0.01)
